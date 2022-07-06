@@ -14,6 +14,7 @@ class Vehicle implements IVehicle {
 	constructor(id: number) {
 		this.id = id;
 		this.isFavorite = false;
+		this.createdAt = new Date();
 	}
 }
 

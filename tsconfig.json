@@ -1,15 +1,12 @@
 {
 	"compilerOptions": {
-		"target": "es5",
 		"module": "commonjs",
-		"lib": ["es6"],
-		"allowJs": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
 		"outDir": "build",
 		"rootDir": "./",
 		"baseUrl": "./src",
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true

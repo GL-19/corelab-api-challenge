@@ -1,13 +1,5 @@
 import { IVehicle } from "../model/IVehicle";
-
-export interface ICreateVehicleDTO {
-	name: string;
-	description: string;
-	plate: string;
-	year: number;
-	color: string;
-	price: number;
-}
+import { ICreateVehicleDTO } from "../useCases/createVehicle/ICreateVehicleDTO";
 
 export interface IVehiclesRepository {
 	create: (data: ICreateVehicleDTO) => Promise<IVehicle>;

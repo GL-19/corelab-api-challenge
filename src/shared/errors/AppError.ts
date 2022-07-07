@@ -1,5 +1,5 @@
 class AppError {
-	constructor(private message: string, private stausCode: number = 400) {}
+	constructor(readonly message: string, readonly statusCode: number = 400) {}
 }
 
 export { AppError };

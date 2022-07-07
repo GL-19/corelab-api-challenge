@@ -1,7 +1,7 @@
-import { count } from "console";
 import { IVehicle } from "../model/IVehicle";
 import { Vehicle } from "../model/Vehicle";
-import { ICreateVehicleDTO, IVehiclesRepository } from "./IVehiclesRepository";
+import { ICreateVehicleDTO } from "../useCases/createVehicle/ICreateVehicleDTO";
+import { IVehiclesRepository } from "./IVehiclesRepository";
 
 class InMemoryVehiclesRepository implements IVehiclesRepository {
 	private vehicles: IVehicle[] = [];

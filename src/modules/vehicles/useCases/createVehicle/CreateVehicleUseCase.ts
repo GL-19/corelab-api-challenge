@@ -1,10 +1,9 @@
-import { IVehicle } from "modules/vehicles/model/IVehicle";
-import {
-	ICreateVehicleDTO,
-	IVehiclesRepository,
-} from "modules/vehicles/repositories/IVehiclesRepository";
-import { AppError } from "shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
+
+import { IVehicle } from "../../model/IVehicle";
+import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
+import { AppError } from "../../../../shared/errors/AppError";
+import { ICreateVehicleDTO } from "./ICreateVehicleDTO";
 
 @injectable()
 class CreateVehicleUseCase {

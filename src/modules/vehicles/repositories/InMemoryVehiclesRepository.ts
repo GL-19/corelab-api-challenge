@@ -2,6 +2,7 @@ import { IVehicle } from "../model/IVehicle";
 import { Vehicle } from "../model/Vehicle";
 import { ICreateVehicleDTO } from "../useCases/createVehicle/ICreateVehicleDTO";
 import { IListVehiclesDTO } from "../useCases/listVehicles/IListVehiclesDTO";
+import { IUpdateVehicleDTO } from "../useCases/updateVehicle/IUpdateVehicleDTO";
 import { IVehiclesRepository } from "./IVehiclesRepository";
 
 class InMemoryVehiclesRepository implements IVehiclesRepository {
@@ -50,6 +51,14 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 
 	async delete(id: number): Promise<void> {
 		this.vehicles = this.vehicles.filter((vehicle) => vehicle.id !== id);
+	}
+
+	async update(data: IUpdateVehicleDTO): Promise<IVehicle> {
+		const vehicle = this.vehicles.find((vehicle) => vehicle.id === data.id);
+
+		Object.assign(vehicle, { ...data });
+
+		return vehicle;
 	}
 
 	async updateFavorite(id: number): Promise<void> {

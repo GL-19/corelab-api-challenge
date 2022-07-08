@@ -5,4 +5,5 @@ export interface IVehiclesRepository {
 	create: (data: ICreateVehicleDTO) => Promise<IVehicle>;
 	findByPlate: (plate: string) => Promise<IVehicle>;
 	findById: (id: number) => Promise<IVehicle>;
+	delete: (id: number) => Promise<void>;
 }

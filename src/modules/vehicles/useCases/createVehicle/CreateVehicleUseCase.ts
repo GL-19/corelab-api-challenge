@@ -16,7 +16,7 @@ class CreateVehicleUseCase {
 		const vehicle = await this.vehiclesRepository.findByPlate(data.plate);
 
 		if (vehicle) {
-			throw new AppError("Vehicle already exists");
+			throw new AppError("Vehicle already exists!");
 		}
 
 		const createdVehicle = await this.vehiclesRepository.create(data);

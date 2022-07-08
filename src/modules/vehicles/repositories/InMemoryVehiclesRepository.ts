@@ -17,6 +17,8 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 
 		this.vehicles.push(vehicle);
 
+		this.currentId += 1;
+
 		return vehicle;
 	}
 
@@ -26,6 +28,10 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 
 	async findById(id: number): Promise<IVehicle> {
 		return this.vehicles.find((vehicle) => vehicle.id === id);
+	}
+
+	async delete(id: number): Promise<void> {
+		this.vehicles.filter((vehicle) => vehicle.id !== id);
 	}
 }
 

@@ -4,8 +4,9 @@ import { IListVehiclesDTO } from "../useCases/listVehicles/IListVehiclesDTO";
 
 export interface IVehiclesRepository {
 	create: (data: ICreateVehicleDTO) => Promise<IVehicle>;
-	findByPlate: (plate: string) => Promise<IVehicle>;
 	findById: (id: number) => Promise<IVehicle>;
-	delete: (id: number) => Promise<void>;
+	findByPlate: (plate: string) => Promise<IVehicle>;
 	list: (filterOptions?: IListVehiclesDTO) => Promise<IVehicle[]>;
+	delete: (id: number) => Promise<void>;
+	updateFavorite: (id: number) => Promise<void>;
 }

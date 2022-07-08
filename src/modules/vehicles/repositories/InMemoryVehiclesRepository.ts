@@ -51,6 +51,12 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 	async delete(id: number): Promise<void> {
 		this.vehicles = this.vehicles.filter((vehicle) => vehicle.id !== id);
 	}
+
+	async updateFavorite(id: number): Promise<void> {
+		const vehicle = this.vehicles.find((vehicle) => vehicle.id === id);
+
+		vehicle.isFavorite = !vehicle.isFavorite;
+	}
 }
 
 export { InMemoryVehiclesRepository };

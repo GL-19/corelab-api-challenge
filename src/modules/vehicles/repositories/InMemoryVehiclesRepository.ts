@@ -31,7 +31,7 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 	}
 
 	async delete(id: number): Promise<void> {
-		this.vehicles.filter((vehicle) => vehicle.id !== id);
+		this.vehicles = this.vehicles.filter((vehicle) => vehicle.id !== id);
 	}
 }
 

@@ -1,6 +1,6 @@
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 import { inject, injectable } from "tsyringe";
-import { AppError } from "shared/errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 
 @injectable()
 class DeleteVehicleUseCase {
@@ -17,6 +17,8 @@ class DeleteVehicleUseCase {
 		}
 
 		await this.vehiclesRepository.delete(id);
+
+		return;
 	}
 }
 

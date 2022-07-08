@@ -17,7 +17,7 @@ class CreateVehicleController {
 			price,
 		});
 
-		return response.json(vehicle);
+		return response.status(201).json(vehicle);
 	}
 }
 

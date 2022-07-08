@@ -5,9 +5,10 @@ import { ListVehiclesUseCase } from "./ListVehiclesUseCase";
 
 class ListVehiclesController {
 	async handle(request: Request, response: Response): Promise<Response> {
-		const { brand, color, year, maxPrice, minPrice } = request.query;
+		const { searchString, brand, color, year, maxPrice, minPrice } = request.query;
 
 		const filterOptions: IListVehiclesDTO = {
+			searchString: searchString ? (searchString as string) : "",
 			brand: brand ? (brand as string) : "",
 			color: color ? (color as string) : "",
 			year: year ? Number(year) : 0,

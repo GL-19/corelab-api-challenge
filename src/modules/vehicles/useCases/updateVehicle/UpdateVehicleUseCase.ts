@@ -12,9 +12,9 @@ class UpdateVehicleUseCase {
 	) {}
 
 	async execute(data: IUpdateVehicleDTO): Promise<IVehicle> {
-		const vehicle = await this.vehiclesRepository.findById(data.id);
+		const existingVehicle = await this.vehiclesRepository.findById(data.id);
 
-		if (!vehicle) {
+		if (!existingVehicle) {
 			throw new AppError("Vehicle not found!");
 		}
 

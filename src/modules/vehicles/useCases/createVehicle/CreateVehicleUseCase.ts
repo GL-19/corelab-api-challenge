@@ -13,15 +13,15 @@ class CreateVehicleUseCase {
 	) {}
 
 	async execute(data: ICreateVehicleDTO): Promise<IVehicle> {
-		const vehicle = await this.vehiclesRepository.findByPlate(data.plate);
+		const existingVehicle = await this.vehiclesRepository.findByPlate(data.plate);
 
-		if (vehicle) {
+		if (existingVehicle) {
 			throw new AppError("Vehicle already exists!");
 		}
 
-		const createdVehicle = await this.vehiclesRepository.create(data);
+		const vehicle = await this.vehiclesRepository.create(data);
 
-		return createdVehicle;
+		return vehicle;
 	}
 }
 

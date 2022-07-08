@@ -25,20 +25,36 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 	}
 
 	async list({
+		searchString = "",
 		brand = "",
 		color = "",
 		year = 0,
 		minPrice = 0,
 		maxPrice = 0,
 	}: IListVehiclesDTO): Promise<IVehicle[]> {
-		return this.vehicles.filter(
+		if (!brand && !color && !year && !maxPrice && !minPrice && !searchString) {
+			return this.vehicles;
+		}
+
+		searchString = searchString.toLowerCase();
+
+		const vehicles = this.vehicles.filter(
 			(vehicle) =>
 				(!brand || vehicle.brand === brand) &&
 				(!color || vehicle.color === color) &&
 				(!year || vehicle.year === year) &&
 				(!maxPrice || vehicle.price <= maxPrice) &&
-				(!minPrice || vehicle.price >= minPrice)
+				(!minPrice || vehicle.price >= minPrice) &&
+				(!searchString ||
+					vehicle.brand.toLowerCase().includes(searchString) ||
+					vehicle.color.toLowerCase().includes(searchString) ||
+					vehicle.description.toLowerCase().includes(searchString) ||
+					vehicle.plate.toLowerCase().includes(searchString) ||
+					vehicle.year === Number(searchString) ||
+					vehicle.price === Number(searchString))
 		);
+
+		return vehicles;
 	}
 
 	async findByPlate(plate: string): Promise<IVehicle> {

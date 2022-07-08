@@ -1,6 +1,7 @@
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
+import { IVehicle } from "../../model/IVehicle";
 
 @injectable()
 class GetVehicleUseCase {
@@ -9,7 +10,7 @@ class GetVehicleUseCase {
 		private vehiclesRepository: IVehiclesRepository
 	) {}
 
-	async execute(id: number) {
+	async execute(id: number): Promise<IVehicle> {
 		const vehicle = await this.vehiclesRepository.findById(id);
 
 		if (!vehicle) {

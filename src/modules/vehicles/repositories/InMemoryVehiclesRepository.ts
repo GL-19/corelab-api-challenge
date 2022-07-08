@@ -1,6 +1,7 @@
 import { IVehicle } from "../model/IVehicle";
 import { Vehicle } from "../model/Vehicle";
 import { ICreateVehicleDTO } from "../useCases/createVehicle/ICreateVehicleDTO";
+import { IListVehiclesDTO } from "../useCases/listVehicles/IListVehiclesDTO";
 import { IVehiclesRepository } from "./IVehiclesRepository";
 
 class InMemoryVehiclesRepository implements IVehiclesRepository {
@@ -20,6 +21,23 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 		this.currentId += 1;
 
 		return vehicle;
+	}
+
+	async list({
+		brand = "",
+		color = "",
+		year = 0,
+		minPrice = 0,
+		maxPrice = 0,
+	}: IListVehiclesDTO): Promise<IVehicle[]> {
+		return this.vehicles.filter(
+			(vehicle) =>
+				(!brand || vehicle.brand === brand) &&
+				(!color || vehicle.color === color) &&
+				(!year || vehicle.year === year) &&
+				(!maxPrice || vehicle.price <= maxPrice) &&
+				(!minPrice || vehicle.price >= minPrice)
+		);
 	}
 
 	async findByPlate(plate: string): Promise<IVehicle> {

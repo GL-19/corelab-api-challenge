@@ -23,6 +23,10 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 	async findByPlate(plate: string): Promise<IVehicle> {
 		return this.vehicles.find((vehicle) => vehicle.plate === plate);
 	}
+
+	async findById(id: number): Promise<IVehicle> {
+		return this.vehicles.find((vehicle) => vehicle.id === id);
+	}
 }
 
 export { InMemoryVehiclesRepository };

@@ -50,8 +50,8 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 					vehicle.color.toLowerCase().includes(searchString) ||
 					vehicle.description.toLowerCase().includes(searchString) ||
 					vehicle.plate.toLowerCase().includes(searchString) ||
-					vehicle.year === Number(searchString) ||
-					vehicle.price === Number(searchString))
+					vehicle.year.toString().includes(searchString) ||
+					vehicle.price.toString().includes(searchString))
 		);
 
 		return vehicles;

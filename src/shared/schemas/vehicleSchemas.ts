@@ -6,7 +6,10 @@ export const createVehicleSchema = yup.object().shape({
 		brand: yup.string().required(),
 		description: yup.string().required(),
 		color: yup.string().required(),
-		plate: yup.string().required(),
+		plate: yup
+			.string()
+			.required()
+			.matches(/[a-zA-Z]{3}[0-9][A-Za-z0-9][0-9]{2}/),
 		year: yup.number().required(),
 		price: yup.number().required(),
 	}),
@@ -18,7 +21,10 @@ export const updateVehicleSchema = yup.object().shape({
 		brand: yup.string().required(),
 		description: yup.string().required(),
 		color: yup.string().required(),
-		plate: yup.string().required(),
+		plate: yup
+			.string()
+			.required()
+			.matches(/[a-zA-Z]{3}[0-9][A-Za-z0-9][0-9]{2}/),
 		year: yup.number().required(),
 		price: yup.number().required(),
 	}),

@@ -5,6 +5,11 @@ import { DeleteVehicleController } from "../useCases/deleteVehicle/DeleteVehicle
 import { ListVehiclesController } from "../useCases/listVehicles/ListVehiclesController";
 import { UpdateFavoriteController } from "../useCases/updateFavorite/UpdateFavoriteController";
 import { UpdateVehicleController } from "../useCases/updateVehicle/UpdateVehicleController";
+import { validateRequestBody } from "../middlewares/validateRequest";
+import {
+	createVehicleSchema,
+	updateVehicleSchema,
+} from "../shared/schemas/vehicleSchemas";
 
 const vehiclesRouter = Router();
 
@@ -15,10 +20,18 @@ const updateVehicleController = new UpdateVehicleController();
 const updateFavoriteController = new UpdateFavoriteController();
 const deleteVehicleController = new DeleteVehicleController();
 
-vehiclesRouter.post("/", createVehicleController.handle);
+vehiclesRouter.post(
+	"/",
+	validateRequestBody(createVehicleSchema),
+	createVehicleController.handle
+);
 vehiclesRouter.get("/", listVehiclesControler.handle);
 vehiclesRouter.get("/:id", getVehicleController.handle);
-vehiclesRouter.put("/:id", updateVehicleController.handle);
+vehiclesRouter.put(
+	"/:id",
+	validateRequestBody(updateVehicleSchema),
+	updateVehicleController.handle
+);
 vehiclesRouter.patch("/:id", updateFavoriteController.handle);
 vehiclesRouter.delete("/:id", deleteVehicleController.handle);
 

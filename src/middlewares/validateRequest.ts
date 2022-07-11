@@ -17,8 +17,6 @@ export function validateRequestBody(schema: any) {
 
 				const errorsObject = Object.assign({}, errorsArray);
 
-				console.log(errorsObject);
-
 				throw new AppError(JSON.stringify(errorsObject));
 			}
 

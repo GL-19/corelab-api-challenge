@@ -1,5 +1,5 @@
-import { IVehicle } from "../model/IVehicle";
-import { Vehicle } from "../model/Vehicle";
+import { IVehicle } from "../models/IVehicle";
+import { Vehicle } from "../models/Vehicle";
 import { ICreateVehicleDTO } from "../useCases/createVehicle/ICreateVehicleDTO";
 import { IListVehiclesDTO } from "../useCases/listVehicles/IListVehiclesDTO";
 import { IUpdateVehicleDTO } from "../useCases/updateVehicle/IUpdateVehicleDTO";

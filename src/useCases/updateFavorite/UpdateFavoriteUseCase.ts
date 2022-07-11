@@ -1,9 +1,9 @@
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../../shared/errors/AppError";
+import { AppError } from "../../shared/errors/AppError";
 
 @injectable()
-class DeleteVehicleUseCase {
+class UpdateFavoriteUseCase {
 	constructor(
 		@inject("InMemoryVehiclesRepository")
 		private vehiclesRepository: IVehiclesRepository
@@ -13,13 +13,11 @@ class DeleteVehicleUseCase {
 		const vehicle = await this.vehiclesRepository.findById(id);
 
 		if (!vehicle) {
-			throw new AppError("Vehicle not found!");
+			throw new AppError("Vehicle not found!", 404);
 		}
 
-		await this.vehiclesRepository.delete(id);
-
-		return;
+		await this.vehiclesRepository.updateFavorite(id);
 	}
 }
 
-export { DeleteVehicleUseCase };
+export { UpdateFavoriteUseCase };

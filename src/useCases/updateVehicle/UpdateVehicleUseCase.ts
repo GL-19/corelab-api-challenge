@@ -1,8 +1,8 @@
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
-import { AppError } from "../../../../shared/errors/AppError";
+import { AppError } from "../../shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 import { IUpdateVehicleDTO } from "./IUpdateVehicleDTO";
-import { IVehicle } from "../../model/IVehicle";
+import { IVehicle } from "../../models/IVehicle";
 
 @injectable()
 class UpdateVehicleUseCase {

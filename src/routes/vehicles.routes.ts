@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { GetVehicleController } from "../modules/vehicles/useCases/getVehicle/GetVehicleController";
-import { CreateVehicleController } from "../modules/vehicles/useCases/createVehicle/CreateVehicleController";
-import { DeleteVehicleController } from "../modules/vehicles/useCases/deleteVehicle/DeleteVehicleController";
-import { ListVehiclesController } from "../modules/vehicles/useCases/listVehicles/ListVehiclesController";
-import { UpdateFavoriteController } from "../modules/vehicles/useCases/updateFavorite/UpdateFavoriteController";
-import { UpdateVehicleController } from "../modules/vehicles/useCases/updateVehicle/UpdateVehicleController";
+import { GetVehicleController } from "../useCases/getVehicle/GetVehicleController";
+import { CreateVehicleController } from "../useCases/createVehicle/CreateVehicleController";
+import { DeleteVehicleController } from "../useCases/deleteVehicle/DeleteVehicleController";
+import { ListVehiclesController } from "../useCases/listVehicles/ListVehiclesController";
+import { UpdateFavoriteController } from "../useCases/updateFavorite/UpdateFavoriteController";
+import { UpdateVehicleController } from "../useCases/updateVehicle/UpdateVehicleController";
 
 const vehiclesRouter = Router();
 

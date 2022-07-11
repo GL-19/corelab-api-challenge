@@ -1,6 +1,6 @@
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 import { inject, injectable } from "tsyringe";
-import { IVehicle } from "../../model/IVehicle";
+import { IVehicle } from "../../models/IVehicle";
 import { IListVehiclesDTO } from "./IListVehiclesDTO";
 
 @injectable()

@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 
-import { IVehicle } from "../../model/IVehicle";
+import { IVehicle } from "../../models/IVehicle";
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
-import { AppError } from "../../../../shared/errors/AppError";
+import { AppError } from "../../shared/errors/AppError";
 import { ICreateVehicleDTO } from "./ICreateVehicleDTO";
 
 @injectable()

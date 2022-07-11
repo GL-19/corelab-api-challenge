@@ -1,24 +1,25 @@
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../../shared/errors/AppError";
-import { IVehicle } from "../../model/IVehicle";
+import { AppError } from "../../shared/errors/AppError";
 
 @injectable()
-class GetVehicleUseCase {
+class DeleteVehicleUseCase {
 	constructor(
 		@inject("InMemoryVehiclesRepository")
 		private vehiclesRepository: IVehiclesRepository
 	) {}
 
-	async execute(id: number): Promise<IVehicle> {
+	async execute(id: number): Promise<void> {
 		const vehicle = await this.vehiclesRepository.findById(id);
 
 		if (!vehicle) {
-			throw new AppError("Vehicle not found!", 404);
+			throw new AppError("Vehicle not found!");
 		}
 
-		return vehicle;
+		await this.vehiclesRepository.delete(id);
+
+		return;
 	}
 }
 
-export { GetVehicleUseCase };
+export { DeleteVehicleUseCase };

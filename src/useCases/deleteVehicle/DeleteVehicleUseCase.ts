@@ -9,7 +9,7 @@ class DeleteVehicleUseCase {
 		private vehiclesRepository: IVehiclesRepository
 	) {}
 
-	async execute(id: number): Promise<void> {
+	async execute(id: string): Promise<void> {
 		const vehicle = await this.vehiclesRepository.findById(id);
 
 		if (!vehicle) {

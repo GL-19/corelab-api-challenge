@@ -8,18 +8,16 @@ import { IVehiclesRepository } from "./IVehiclesRepository";
 class InMemoryVehiclesRepository implements IVehiclesRepository {
 	private vehicles: IVehicle[] = [];
 
-	private currentId: number = 1;
-
 	async create(data: ICreateVehicleDTO): Promise<IVehicle> {
-		const vehicle = new Vehicle(this.currentId);
+		const vehicle = new Vehicle();
 
 		Object.assign(vehicle, {
 			...data,
+			isFavorite: false,
+			createdAt: new Date(),
 		});
 
 		this.vehicles.push(vehicle);
-
-		this.currentId += 1;
 
 		return vehicle;
 	}
@@ -61,11 +59,11 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 		return this.vehicles.find((vehicle) => vehicle.plate === plate);
 	}
 
-	async findById(id: number): Promise<IVehicle> {
+	async findById(id: string): Promise<IVehicle> {
 		return this.vehicles.find((vehicle) => vehicle.id === id);
 	}
 
-	async delete(id: number): Promise<void> {
+	async delete(id: string): Promise<void> {
 		this.vehicles = this.vehicles.filter((vehicle) => vehicle.id !== id);
 	}
 
@@ -77,7 +75,7 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 		return vehicle;
 	}
 
-	async updateFavorite(id: number): Promise<void> {
+	async updateFavorite(id: string): Promise<void> {
 		const vehicle = this.vehicles.find((vehicle) => vehicle.id === id);
 
 		vehicle.isFavorite = !vehicle.isFavorite;

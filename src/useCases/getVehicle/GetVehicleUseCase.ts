@@ -10,7 +10,7 @@ class GetVehicleUseCase {
 		private vehiclesRepository: IVehiclesRepository
 	) {}
 
-	async execute(id: number): Promise<IVehicle> {
+	async execute(id: string): Promise<IVehicle> {
 		const vehicle = await this.vehiclesRepository.findById(id);
 
 		if (!vehicle) {

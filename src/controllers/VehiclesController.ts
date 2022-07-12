@@ -35,7 +35,7 @@ class VehiclesController {
 		const updateVehicleUseCase = container.resolve(UpdateVehicleUseCase);
 
 		const vehicle = await updateVehicleUseCase.execute({
-			id: Number(id),
+			id,
 			name,
 			brand,
 			description,
@@ -53,7 +53,7 @@ class VehiclesController {
 
 		const deleteVehicleUseCase = container.resolve(DeleteVehicleUseCase);
 
-		await deleteVehicleUseCase.execute(Number(id));
+		await deleteVehicleUseCase.execute(id);
 
 		return response.send();
 	}
@@ -63,7 +63,7 @@ class VehiclesController {
 
 		const getVehicleUseCase = container.resolve(GetVehicleUseCase);
 
-		const vehicle = await getVehicleUseCase.execute(Number(id));
+		const vehicle = await getVehicleUseCase.execute(id);
 
 		return response.json(vehicle);
 	}
@@ -92,7 +92,7 @@ class VehiclesController {
 
 		const updateFavoriteUseCase = container.resolve(UpdateFavoriteUseCase);
 
-		await updateFavoriteUseCase.execute(Number(id));
+		await updateFavoriteUseCase.execute(id);
 
 		return response.send();
 	}

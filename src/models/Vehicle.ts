@@ -1,7 +1,8 @@
 import { IVehicle } from "./IVehicle";
+import { v4 as uuidV4 } from "uuid";
 
 class Vehicle implements IVehicle {
-	id: number;
+	id: string;
 	name: string;
 	brand: string;
 	description: string;
@@ -12,10 +13,10 @@ class Vehicle implements IVehicle {
 	price: number;
 	createdAt: Date;
 
-	constructor(id: number) {
-		this.id = id;
-		this.isFavorite = false;
-		this.createdAt = new Date();
+	constructor() {
+		if (!this.id) {
+			this.id = uuidV4();
+		}
 	}
 }
 

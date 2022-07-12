@@ -23,7 +23,7 @@ app.use((error: Error, request: Request, response: Response, _next: NextFunction
 	}
 
 	return response.status(500).json({
-		error: `Internal Server Error`,
+		error: `Internal Server Error - ${error.message}`,
 	});
 });
 

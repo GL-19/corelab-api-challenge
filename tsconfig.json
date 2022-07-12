@@ -6,7 +6,7 @@
 		"skipLibCheck": true,
 		"outDir": "build",
 		"rootDir": "./",
-		"baseUrl": "./src",
+		"baseUrl": "./",
 		"forceConsistentCasingInFileNames": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true

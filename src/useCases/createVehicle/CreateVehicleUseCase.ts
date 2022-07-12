@@ -8,7 +8,7 @@ import { ICreateVehicleDTO } from "./ICreateVehicleDTO";
 @injectable()
 class CreateVehicleUseCase {
 	constructor(
-		@inject("VehiclesRepository")
+		@inject("InMemoryVehiclesRepository")
 		private vehiclesRepository: IVehiclesRepository
 	) {}
 

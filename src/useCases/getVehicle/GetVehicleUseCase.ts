@@ -1,12 +1,12 @@
 import { IVehiclesRepository } from "../../repositories/IVehiclesRepository";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../shared/errors/AppError";
-import { IVehicle } from "../../models/IVehicle";
+import { IVehicle } from "../../entities/IVehicle";
 
 @injectable()
 class GetVehicleUseCase {
 	constructor(
-		@inject("InMemoryVehiclesRepository")
+		@inject("VehiclesRepository")
 		private vehiclesRepository: IVehiclesRepository
 	) {}
 

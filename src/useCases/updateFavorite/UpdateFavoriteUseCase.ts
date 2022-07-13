@@ -5,7 +5,7 @@ import { AppError } from "../../shared/errors/AppError";
 @injectable()
 class UpdateFavoriteUseCase {
 	constructor(
-		@inject("InMemoryVehiclesRepository")
+		@inject("VehiclesRepository")
 		private vehiclesRepository: IVehiclesRepository
 	) {}
 

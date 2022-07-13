@@ -1,11 +1,13 @@
-import { IVehicle } from "../models/IVehicle";
-import { Vehicle } from "../models/Vehicle";
+import { vehiclesRouter } from "src/routes/vehicles.routes";
 import { Repository } from "typeorm";
+
+import { dataSource } from "../database/dataSource";
+import { IVehicle } from "../entities/IVehicle";
+import { Vehicle } from "../entities/Vehicle";
 import { ICreateVehicleDTO } from "../useCases/createVehicle/ICreateVehicleDTO";
 import { IListVehiclesDTO } from "../useCases/listVehicles/IListVehiclesDTO";
 import { IUpdateVehicleDTO } from "../useCases/updateVehicle/IUpdateVehicleDTO";
 import { IVehiclesRepository } from "./IVehiclesRepository";
-import { dataSource } from "../shared/typeorm/dataSource";
 
 class VehiclesRepository implements IVehiclesRepository {
 	private repository: Repository<Vehicle>;
@@ -17,6 +19,8 @@ class VehiclesRepository implements IVehiclesRepository {
 	async create(data: ICreateVehicleDTO): Promise<IVehicle> {
 		const vehicle = await this.repository.create(data);
 
+		console.log("vehicle", vehicle);
+
 		return this.repository.save(vehicle);
 	}
 
@@ -27,7 +31,9 @@ class VehiclesRepository implements IVehiclesRepository {
 	}
 
 	async findByPlate(plate: string): Promise<IVehicle> {
-		throw new Error("Not implemented yet");
+		const vehicle = await this.repository.findOneBy({ plate });
+
+		return vehicle;
 	}
 
 	async list(filterOptions?: IListVehiclesDTO): Promise<IVehicle[]> {
@@ -35,11 +41,13 @@ class VehiclesRepository implements IVehiclesRepository {
 	}
 
 	async delete(id: string): Promise<void> {
-		throw new Error("Not implemented yet");
+		await this.repository.delete({ id });
 	}
 
 	async update(data: IUpdateVehicleDTO): Promise<IVehicle> {
-		throw new Error("Not implemented yet");
+		const vehicle = await this.repository.update({ ...data }, { id: data.id });
+
+		console.log(vehicle);
 	}
 
 	async updateFavorite(id: string): Promise<void> {

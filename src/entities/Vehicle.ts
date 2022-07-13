@@ -1,8 +1,8 @@
 import { IVehicle } from "./IVehicle";
 import { v4 as uuidV4 } from "uuid";
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
-@Entity()
+@Entity("vehicles")
 class Vehicle implements IVehicle {
 	@PrimaryColumn()
 	id: string;
@@ -31,7 +31,7 @@ class Vehicle implements IVehicle {
 	@Column()
 	price: number;
 
-	@Column()
+	@CreateDateColumn()
 	createdAt: Date;
 
 	constructor() {

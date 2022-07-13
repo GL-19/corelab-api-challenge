@@ -19,8 +19,6 @@ class VehiclesRepository implements IVehiclesRepository {
 	async create(data: ICreateVehicleDTO): Promise<IVehicle> {
 		const vehicle = await this.repository.create(data);
 
-		console.log("vehicle", vehicle);
-
 		return this.repository.save(vehicle);
 	}
 

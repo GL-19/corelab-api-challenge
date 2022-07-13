@@ -66,7 +66,7 @@ class VehiclesRepository implements IVehiclesRepository {
 					" OR vehicle.description ilike :search" +
 					" OR vehicle.brand ilike :search" +
 					" OR vehicle.plate ilike :search" +
-					" OR vehicle.plate ilike :search" +
+					" OR vehicle.color ilike :search" +
 					" OR cast(vehicle.year as varchar) ilike :search" +
 					" OR cast(vehicle.price as varchar) ilike :search",
 				{

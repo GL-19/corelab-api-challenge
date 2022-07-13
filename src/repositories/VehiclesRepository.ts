@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { createQueryBuilder, Repository } from "typeorm";
 
 import { dataSource } from "../database/dataSource";
 import { IVehicle } from "../entities/IVehicle";
@@ -34,9 +34,48 @@ class VehiclesRepository implements IVehiclesRepository {
 	}
 
 	async list(filterOptions?: IListVehiclesDTO): Promise<IVehicle[]> {
-		const vehicles = await this.repository.find();
+		const listQuery = this.repository.createQueryBuilder("vehicle");
 
-		return vehicles;
+		if (filterOptions.brand) {
+			listQuery.andWhere("vehicle.brand = :brand", { brand: filterOptions.brand });
+		}
+
+		if (filterOptions.color) {
+			listQuery.andWhere("vehicle.color = :color", { color: filterOptions.color });
+		}
+
+		if (filterOptions.year) {
+			listQuery.andWhere("vehicle.year = :year", { year: filterOptions.year });
+		}
+
+		if (filterOptions.minPrice) {
+			listQuery.andWhere("vehicle.price >= :minPrice", {
+				minPrice: filterOptions.minPrice,
+			});
+		}
+
+		if (filterOptions.maxPrice) {
+			listQuery.andWhere("vehicle.price <= :maxPrice", {
+				maxPrice: filterOptions.maxPrice,
+			});
+		}
+
+		if (filterOptions.searchString) {
+			listQuery.andWhere(
+				"vehicle.name ilike :search" +
+					" OR vehicle.description ilike :search" +
+					" OR vehicle.brand ilike :search" +
+					" OR vehicle.plate ilike :search" +
+					" OR vehicle.plate ilike :search" +
+					" OR cast(vehicle.year as varchar) ilike :search" +
+					" OR cast(vehicle.price as varchar) ilike :search",
+				{
+					search: `%${filterOptions.searchString}%`,
+				}
+			);
+		}
+
+		return listQuery.getMany();
 	}
 
 	async delete(id: string): Promise<void> {

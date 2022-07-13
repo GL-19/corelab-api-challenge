@@ -44,9 +44,10 @@ class InMemoryVehiclesRepository implements IVehiclesRepository {
 				(!maxPrice || vehicle.price <= maxPrice) &&
 				(!minPrice || vehicle.price >= minPrice) &&
 				(!searchString ||
+					vehicle.name.toLowerCase().includes(searchString) ||
 					vehicle.brand.toLowerCase().includes(searchString) ||
-					vehicle.color.toLowerCase().includes(searchString) ||
 					vehicle.description.toLowerCase().includes(searchString) ||
+					vehicle.color.toLowerCase().includes(searchString) ||
 					vehicle.plate.toLowerCase().includes(searchString) ||
 					vehicle.year.toString().includes(searchString) ||
 					vehicle.price.toString().includes(searchString))

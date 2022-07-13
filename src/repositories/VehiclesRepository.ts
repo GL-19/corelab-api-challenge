@@ -1,4 +1,4 @@
-import { createQueryBuilder, Repository } from "typeorm";
+import { Repository } from "typeorm";
 
 import { dataSource } from "../database/dataSource";
 import { IVehicle } from "../entities/IVehicle";

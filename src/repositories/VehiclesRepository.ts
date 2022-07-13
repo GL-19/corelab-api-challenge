@@ -1,4 +1,3 @@
-import { vehiclesRouter } from "src/routes/vehicles.routes";
 import { Repository } from "typeorm";
 
 import { dataSource } from "../database/dataSource";
@@ -35,7 +34,9 @@ class VehiclesRepository implements IVehiclesRepository {
 	}
 
 	async list(filterOptions?: IListVehiclesDTO): Promise<IVehicle[]> {
-		throw new Error("Not implemented yet");
+		const vehicles = await this.repository.find();
+
+		return vehicles;
 	}
 
 	async delete(id: string): Promise<void> {
@@ -43,13 +44,17 @@ class VehiclesRepository implements IVehiclesRepository {
 	}
 
 	async update(data: IUpdateVehicleDTO): Promise<IVehicle> {
-		const vehicle = await this.repository.update({ ...data }, { id: data.id });
+		await this.repository.update({ id: data.id }, { ...data });
 
-		console.log(vehicle);
+		const vehicle = await this.repository.findOneBy({ id: data.id });
+
+		return vehicle;
 	}
 
 	async updateFavorite(id: string): Promise<void> {
-		throw new Error("Not implemented yet");
+		const vehicle = await this.repository.findOneBy({ id });
+
+		await this.repository.update(id, { isFavorite: !vehicle.isFavorite });
 	}
 }
 
